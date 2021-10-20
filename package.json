@@ -1,0 +1,28 @@
+{
+  "name": "Homework-10-OOP",
+  "version": "1.0.0",
+  "description": "## Description",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jones406/Homework-10-OOP.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jones406/Homework-10-OOP/issues"
+  },
+  "homepage": "https://github.com/jones406/Homework-10-OOP#readme",
+  "dependencies": {
+    "inquirer": "^8.2.0",
+    "jest": "^27.3.1"
+  }
+}
