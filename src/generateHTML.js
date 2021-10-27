@@ -13,6 +13,16 @@ function renderEmailLink(response) {
   }
 }
 
+let returnEmployees = (arr) => {
+  arr.forEach(emp => {
+    console.log(emp.getRole())
+  });
+}
+//need a seprate fn for each employee type
+// use a for each ex: if emp.getRole() === Engineer then make engineer html
+// In the body: call fn that loops thru employees array and gets the role and renders a card for each 
+//IF (emp.getRole() === "engineer") { create div, add div class as card (if using bootstrap), and then append everything together}
+
 function generateHTML(response) {
     return `
     <!DOCTYPE html>
@@ -24,11 +34,7 @@ function generateHTML(response) {
         <title>Document</title>
     </head>
     <body>
-    <h5>${response.name}</h5>
-    <div>${response.id}</div>
-    <div>${response.email}</div>
-    <div>${renderEmailLink(response)}</div>
-    <div>${renderGithubLink(response)}</div>  
+    ${returnEmployees(response)}
     </body>
     </html>
     `;
