@@ -7,7 +7,7 @@ function renderGithubLink(response) {
 }
 function renderEmailLink(response) {
   if (response.email) {
-    return ` [Email Me](mailto:${response.email})`
+    return ` [Email](mailto:${response.email})`
   } else {
     return 'No email provided.'
   }
@@ -33,3 +33,5 @@ function generateHTML(response) {
     </html>
     `;
   };
+
+  module.exports = generateHTML

@@ -1,8 +1,8 @@
 const path = require("path");
 const inquirer = require("inquirer");
 const fs = require('fs');
-const generateHTML = require('./src/generateHTML')
-const { generateEngineer, generateIntern, generateManager } = require('./src/prompts')
+const generateHTML = require('./src/generateHTML');
+const { generateEngineer, generateIntern, generateManager } = require('./src/prompts');
 
 const start = () => {
   inquirer.prompt([
@@ -45,7 +45,7 @@ const start = () => {
     }
   })
   .then(function (response) { 
-    fs.writeFile('index.html', generateHTML(response), err => {
+    fs.writeFile('./dist/index.html', generateHTML(response), err => {
         err ? console.log(err) : console.log('Success!')
     });
 })
