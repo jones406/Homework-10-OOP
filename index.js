@@ -1,6 +1,8 @@
 const path = require("path");
 const inquirer = require("inquirer");
-const { generateEngineer, generateIntern, generateManager } = require('path/to/file')
+const fs = require('fs');
+const generateHTML = require('./src/generateHTML')
+const { generateEngineer, generateIntern, generateManager } = require('./src/prompts')
 
 const start = () => {
   inquirer.prompt([
@@ -17,8 +19,12 @@ const start = () => {
     {
       name: "email",
       type: "input",
-      message: "What is your employee's email?"
-      // find a way to validate a proper email address
+      message: "What is your employee's email?",
+    },
+    {
+      name: "role",
+      type: "list",
+      choices: ["Manager", "Engineer", "Intern"]
     },
   ])
   .then(function(response) {
@@ -38,8 +44,16 @@ const start = () => {
         break;
     }
   })
+  .then(function (response) { 
+    fs.writeFile('index.html', generateHTML(response), err => {
+        err ? console.log(err) : console.log('Success!')
+    });
+})
+.catch(function (err) {
+    console.log(err);
+})
 }
 
 start();
 
-//generate HTML and CSS files
+
