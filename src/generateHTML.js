@@ -1,30 +1,20 @@
-function renderGithubLink(response) {
-  if (response.github) {
-    return `  [My Github](https://www.github.com/${response.github})`
-  } else {
-    return 'No github username provided.'
-  }
-}
-function renderEmailLink(response) {
-  if (response.email) {
-    return ` [Email](mailto:${response.email})`
-  } else {
-    return 'No email provided.'
-  }
-}
-
 let returnEmployees = (arr) => {
   arr.forEach(emp => {
-    console.log(emp.getRole())
-  });
+    console.log(emp.getRole());
+  })
 }
-//need a seprate fn for each employee type
-// use a for each ex: if emp.getRole() === Engineer then make engineer html
-// In the body: call fn that loops thru employees array and gets the role and renders a card for each 
-//IF (emp.getRole() === "engineer") { create div, add div class as card (if using bootstrap), and then append everything together}
 
-function generateHTML(response) {
-    return `
+    //fn to create html by looping through the array made from user responses
+    //return from the function can be called in the generateHTML fn
+    //need a seprate fn for each employee type
+    // use a for each ex: if emp.getRole() === Engineer then make engineer html
+
+    // In the body: call fn that loops thru employees array and gets the role and renders a card for each 
+    
+    //IF (emp.getRole() === "engineer") { create div, add div class as card (if using bootstrap), and then append everything together}
+
+    function generateHTML(response) {
+      return `
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -38,6 +28,6 @@ function generateHTML(response) {
     </body>
     </html>
     `;
-  };
+    };
 
-  module.exports = generateHTML
+    module.exports = generateHTML

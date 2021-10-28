@@ -31,12 +31,12 @@ function generateEngineer() {
       message: "What is your engineer's github username?"
     },
   ])
-  .then(function(res) {
-    let eng = new Engineer(res.name, res.id, res.email, res.github);
-    employees.push(eng);
-    console.log(employees);
-    start();
-  })
+    .then(function (res) {
+      let eng = new Engineer(res.name, res.id, res.email, res.github); //create new engineer from responses
+      employees.push(eng); //add new engineer to array
+      console.log(employees);
+      start();
+    })
 }
 
 function generateManager() {
@@ -57,11 +57,17 @@ function generateManager() {
       message: "What is your employee's email?",
     },
     {
-        name: "officeNumber",
-        type: "number",
-        message: "What is your Manager's office number?"
-      },
-    ]) 
+      name: "office",
+      type: "number",
+      message: "What is your Manager's office number?"
+    },
+  ])
+    .then(function (res) {
+      let mgr = new Manager(res.name, res.id, res.email, res.office);
+      employees.push(mgr);
+      console.log(employees);
+      start();
+    })
 }
 
 function generateIntern() {
@@ -82,53 +88,59 @@ function generateIntern() {
       message: "What is your employee's email?",
     },
     {
-        name: "school",
-        type: "input",
-        message: "What is your intern's school name?"
-      },
-    ]) 
+      name: "school",
+      type: "input",
+      message: "What is your intern's school name?"
+    },
+  ])
+    .then(function (res) {
+      let itn = new Intern(res.name, res.id, res.email, res.school);
+      employees.push(itn);
+      console.log(employees);
+      start();
+    })
 }
 
-const start = () => {
+let start = () => {
   inquirer.prompt([
     {
       message: "What type of employee are you adding?",
       name: "role",
       type: "list",
       choices: ["Manager", "Engineer", "Intern", "quit"]
-    },
-  ])
-  .then(function(response) {
-    console.log(response)
-    switch (response.role) {
-      case "Manager":
-        generateManager()
-        break;
-      case "Intern":
-        generateIntern()
-        break;
-      case "Engineer":
-        generateEngineer()
-        break;
-      default:
-        quit()
-        break;
     }
-  })
-  // .then(function (response) { 
-  //   fs.writeFile('./dist/index.html', generateHTML(response), err => {
-  //       err ? console.log(err) : console.log('Success!')
-  //   });
-// })
-.catch(function (err) {
-    console.log(err);
-})
+  ])
+    .then(function (response) {
+      console.log(response)
+      switch (response.role) {
+        case "Manager":
+          generateManager()
+          break;
+        case "Intern":
+          generateIntern()
+          break;
+        case "Engineer":
+          generateEngineer()
+          break;
+        default:
+          quit()
+          break;
+      }
+    })
+    // .then(function (response) { 
+    //   fs.writeFile('./dist/index.html', generateHTML(response), err => {
+    //       err ? console.log(err) : console.log('Success!')
+    //   });
+    // })
+    .catch(function (err) {
+      console.log(err);
+    })
 }
 
 const quit = () => {
   fs.writeFile('./dist/index.html', generateHTML(employees), err => {
-  err ? console.log(err) : console.log('Success!')
-})
+    err ? console.log(err) : console.log('Success!')
+  })
 }
 
 start();
