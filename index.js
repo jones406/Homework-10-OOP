@@ -8,110 +8,16 @@ const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 const employees = [];
 
-function generateEngineer() {
-  inquirer.prompt([
-    {
-      name: "name",
-      type: "input",
-      message: "What is your employee's name?"
-    },
-    {
-      name: "id",
-      type: "number",
-      message: "What is your employee's id?"
-    },
-    {
-      name: "email",
-      type: "input",
-      message: "What is your employee's email?",
-    },
-    {
-      name: "github",
-      type: "input",
-      message: "What is your engineer's github username?"
-    },
-  ])
-    .then(function (res) {
-      let eng = new Engineer(res.name, res.id, res.email, res.github); //create new engineer from responses
-      employees.push(eng); //add new engineer to array
-      console.log(employees);
-      start();
-    })
-}
-
-function generateManager() {
-  inquirer.prompt([
-    {
-      name: "name",
-      type: "input",
-      message: "What is your employee's name?"
-    },
-    {
-      name: "id",
-      type: "number",
-      message: "What is your employee's id?"
-    },
-    {
-      name: "email",
-      type: "input",
-      message: "What is your employee's email?",
-    },
-    {
-      name: "office",
-      type: "number",
-      message: "What is your Manager's office number?"
-    },
-  ])
-    .then(function (res) {
-      let mgr = new Manager(res.name, res.id, res.email, res.office);
-      employees.push(mgr);
-      console.log(employees);
-      start();
-    })
-}
-
-function generateIntern() {
-  inquirer.prompt([
-    {
-      name: "name",
-      type: "input",
-      message: "What is your employee's name?"
-    },
-    {
-      name: "id",
-      type: "number",
-      message: "What is your employee's id?"
-    },
-    {
-      name: "email",
-      type: "input",
-      message: "What is your employee's email?",
-    },
-    {
-      name: "school",
-      type: "input",
-      message: "What is your intern's school name?"
-    },
-  ])
-    .then(function (res) {
-      let itn = new Intern(res.name, res.id, res.email, res.school);
-      employees.push(itn);
-      console.log(employees);
-      start();
-    })
-}
-
 let start = () => {
   inquirer.prompt([
     {
       message: "What type of employee are you adding?",
       name: "role",
       type: "list",
-      choices: ["Manager", "Engineer", "Intern", "quit"]
+      choices: ["Manager", "Engineer", "Intern", "quit"] //to do: add default or error
     }
   ])
     .then(function (response) {
-      console.log(response)
       switch (response.role) {
         case "Manager":
           generateManager()
@@ -127,20 +33,127 @@ let start = () => {
           break;
       }
     })
-    // .then(function (response) { 
-    //   fs.writeFile('./dist/index.html', generateHTML(response), err => {
-    //       err ? console.log(err) : console.log('Success!')
-    //   });
-    // })
     .catch(function (err) {
       console.log(err);
     })
 }
 
-const quit = () => {
-  fs.writeFile('./dist/index.html', generateHTML(employees), err => {
-    err ? console.log(err) : console.log('Success!')
-  })
+function generateEngineer() {
+  inquirer.prompt([
+    {
+      name: "name",
+      type: "input",
+      message: "Engineer's name:"
+    },
+    {
+      name: "id",
+      type: "number",
+      message: "Engineer's id number:"
+    },
+    {
+      name: "email",
+      type: "input",
+      message: "Engineer's email:",
+    },
+    {
+      name: "github",
+      type: "input",
+      message: "Engineer's github username:"
+    },
+  ])
+    .then(function (res) {
+      let eng = new Engineer(res.name, res.id, res.email, res.github); //create new engineer
+      employees.push(eng); //add new engineer to array
+      console.log(employees); //view array of employees so far
+      start();
+    })
 }
+
+function generateManager() {
+  inquirer.prompt([
+    {
+      name: "name",
+      type: "input",
+      message: "Manager's name:"
+    },
+    {
+      name: "id",
+      type: "number",
+      message: "Manager's id:"
+    },
+    {
+      name: "email",
+      type: "input",
+      message: "Manager's email:",
+    },
+    {
+      name: "office",
+      type: "number",
+      message: "Manager's office number:"
+    },
+  ])
+    .then(function (res) {
+      let mgr = new Manager(res.name, res.id, res.email, res.office);
+      employees.push(mgr);
+      console.log(employees);
+      start();
+    })
+}
+
+function generateIntern() {
+  inquirer.prompt([
+    {
+      name: "name",
+      type: "input",
+      message: "Intern's name:"
+    },
+    {
+      name: "id",
+      type: "number",
+      message: "Intern's id:"
+    },
+    {
+      name: "email",
+      type: "input",
+      message: "Intern's email:",
+    },
+    {
+      name: "school",
+      type: "input",
+      message: "Intern's school name:"
+    },
+  ])
+    .then(function (res) {
+      let itn = new Intern(res.name, res.id, res.email, res.school);
+      employees.push(itn);
+      console.log(employees);
+      start();
+    })
+}
+function quit() {
+   fs.writeFile('./dist/index.html', generateHTML(employees), err => {
+    err ? console.log(err) : console.log('Success!');
+  });
+}
+
+//employees array contains employee types and their info in objects. 
+//Example:
+// [ Manager {
+//     name: 'salkfjalksjf;lasjkdf',
+//     id: 3233,
+//     email: 'afdgj',
+//     officeNumber: 1
+//   },
+
+//   Engineer { 
+//      name: 'asdf', 
+//      id: 4, 
+//      email: 'f', 
+//      github: 'f' }
+// ]
+
+//use employees array in a generate HTML fn
+
+//HTML card
 
 start();
