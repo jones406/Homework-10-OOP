@@ -1,5 +1,4 @@
-function generateHTML(response) {
-  return
+function generateHTML() {
   `
   <!DOCTYPE html>
   <html lang="en">
@@ -12,21 +11,12 @@ function generateHTML(response) {
   <body>
     <div class="jumbotron jumbotron-fluid"> Employees
       <div class="container">
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">${..}}</h5>
-              <p class="card-text">
-              Name: ${name}
-              ID: ${id}
-              E-Mail: ${email}
-              Office Number: ${officeNumber}
-              </p>
-          </div>
-        </div>  
+
+      </div>  
     </div>
   </body>
   </html>
   `
-};
+}}};
 
 module.exports = generateHTML
