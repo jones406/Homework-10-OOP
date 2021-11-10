@@ -1,7 +1,7 @@
 const path = require("path");
 const inquirer = require("inquirer");
 const fs = require('fs');
-//const generateHTML = require('./src/generateHTML');
+const generateHTML = require('./src/generateHTML');
 const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
@@ -131,10 +131,8 @@ function generateIntern() {
     })
 }
 
-
-
 function quit() {
-  fs.writeFile('./dist/index.html', generateHTML(), err => {
+  fs.writeFile('./dist/index.html', generateHTML(employees), err => {
     err ? console.log(err) : console.log('Success!');
   });
 }

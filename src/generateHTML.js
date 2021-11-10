@@ -1,55 +1,57 @@
-//employees array contains employee types and their info in objects. 
-//Example:
+//employees array ex:
 // [Manager {
 //     name: 'salkfjalksjf;lasjkdf',
 //     id: 3233,
 //     email: 'afdgj',
 //     officeNumber: 1
 //   },
-
 //   Engineer { 
 //      name: 'asdf', 
 //      id: 4, 
 //      email: 'f', 
 //      github: 'f' }
 // ]
+const Manager = require('../lib/Manager');
+const Engineer = require('../lib/Engineer');
+const Intern = require('../lib/Intern');
+
 function generateCards(employees) {
+    let HTMLCard;
     for (const employee of employees) {
-      let HTMLCard;
-      switch (employee) {
-        case "Manager":
-          HTMLCard = `<div class="card" style="width: 18rem;">
+      switch (employee.constructor) {
+        case Manager:
+          HTMLCard += `<div class="card" style="width: 18rem;">
             <div class="card-body">
               <h5 class="card-title">Manager</h5>
                 <p class="card-text">
-                Name: ${Manager.name}<br>
-                ID: ${Manager.id}<br>
-                E-Mail: ${Manager.email}<br>
-                Office Number: ${Manager.officeNumber}
+                Name: ${employee.name}<br>
+                ID: ${employee.id}<br>
+                E-Mail: ${employee.email}<br>
+                Office Number: ${employee.officeNumber}
                 </p>
             </div>`;
           break;
-        case "Intern":
-          HTMLCard = `<div class="card" style="width: 18rem;">
+        case Intern:
+          HTMLCard += `<div class="card" style="width: 18rem;">
           <div class="card-body">
             <h5 class="card-title">Manager</h5>
               <p class="card-text">
-              Name: ${Intern.name}<br>
-              ID: ${Intern.id}<br>
-              E-Mail: ${Intern.email}<br>
-              Office Number: ${Intern.officeNumber}
+              Name: ${employee.name}<br>
+              ID: ${employee.id}<br>
+              E-Mail: ${employee.email}<br>
+              School Name: ${employee.schoolName}
               </p>
           </div>`;
           break;
-        case "Engineer":
-          HTMLCard = `<div class="card" style="width: 18rem;">
+        case Engineer:
+          HTMLCard += `<div class="card" style="width: 18rem;">
           <div class="card-body">
             <h5 class="card-title">Manager</h5>
               <p class="card-text">
-              Name: ${Engineer.name}<br>
-              ID: ${Engineer.id}<br>
-              E-Mail: ${Engineer.email}<br>
-              Office Number: ${Engineer.officeNumber}
+              Name: ${employee.name}<br>
+              ID: ${employee.id}<br>
+              E-Mail: ${employee.email}<br>
+              Github: ${employee.github}
               </p>
           </div>`;
           break;
@@ -58,10 +60,11 @@ function generateCards(employees) {
           break;
       }
     }
+    return HTMLCard;
   }
   
-  function generateHTML() {
-    `<!DOCTYPE html>
+  function generateHTML(employees) {
+    return `<!DOCTYPE html>
     <html lang="en">
     <head>
       <meta charset="UTF-8">
@@ -72,9 +75,11 @@ function generateCards(employees) {
     <body>
       <div class="jumbotron jumbotron-fluid"> Employees
         <div class="container">
-          ${HTMLCard}
+          ${generateCards(employees)}
           </div>  
       </div>
     </body>
     </html>`
   };
+
+  module.exports = generateHTML;
