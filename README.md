@@ -15,6 +15,7 @@ This Node.js command-line application can be used by team managers to create a t
 
 
 ## Installation  
+ - [Click here for Overview Video](https://youtu.be/Xg-WGRQmbTk)
  - Open an integrated terminal from the root and type "npm i" to install the necessary node packages. 
  - Type "npm start" or "node server.js" to run the inquirer prompts. This is how you will add different employees and their information to create your team. 
  - Finally, you can select "quit" once all employees are added. This will generate an HTML file in the "dist" folder. You may open this in a browser to view your team.
