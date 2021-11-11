@@ -55,14 +55,13 @@ THEN I exit the application, and the HTML is generated
 ## License MIT
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  
 Link: https://www.mit.edu/~amini/LICENSE.md  
-    
       
   ## Contribute  
   N/A  
 
   ## Test
   See tests folder for Employee, Engineer, Intern, and Manager tests. Open the terminal from there and type "npm run test" (after ensuring you've done "npm i").
-  
+
 
   ## Questions  
   For questions, please check out my Github profile or email me.  

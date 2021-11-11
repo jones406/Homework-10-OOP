@@ -34,7 +34,7 @@ function generateCards(employees) {
         case Intern:
           HTMLCard += `<div class="card" style="width: 18rem;">
           <div class="card-body">
-            <h5 class="card-title">Manager</h5>
+            <h5 class="card-title">Intern</h5>
               <p class="card-text">
               Name: ${employee.name}<br>
               ID: ${employee.id}<br>
@@ -46,7 +46,7 @@ function generateCards(employees) {
         case Engineer:
           HTMLCard += `<div class="card" style="width: 18rem;">
           <div class="card-body">
-            <h5 class="card-title">Manager</h5>
+            <h5 class="card-title">Engineer</h5>
               <p class="card-text">
               Name: ${employee.name}<br>
               ID: ${employee.id}<br>
